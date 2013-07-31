@@ -9,12 +9,21 @@ class TestTokenizer < Minitest::Test
              @label2:node #label:node"
     output = MemoParser::Tokenizer.tokenize(input)
     expected_output = [
-                        ["@", "", "some_marker"], ["@", "label1", "node1"],
+                        ["@", nil, "some_marker"], ["@", "label1", "node1"],
                         ["@", "label2", "node"],
                         ["#", "label", "node"]
                       ]
+    assert_equal expected_output, output
+  end
 
-    assert output == expected_output
+  def test_select_markers
+    input = "some string @some_marker, @ # #:not_marker 
+             @:not_marker @label1:node1 @label1:node1 
+             @label2:node #label:node"
+    output = MemoParser::Tokenizer.select_markers(input)
+    expected_output = ["@some_marker,", "@label1:node1", "@label2:node", 
+                       "#label:node"]
+    assert_equal expected_output, output
   end
 
   def test_tokenize_markers_array
@@ -22,34 +31,21 @@ class TestTokenizer < Minitest::Test
     output = MemoParser::Tokenizer.tokenize_markers_array(input)
     expected_output =  [["@", "some_label", "some_node"], 
                         ["#", "some_label", "some_node"]]
-
-    assert output == expected_output
+    assert_equal expected_output, output
   end
 
   def test_tokenize_unlabeled_marker
     input = "@some_node"
     output = MemoParser::Tokenizer.tokenize_marker(input)
-    expected_output = ["@", "", "some_node"]
-
-    assert output == expected_output
+    expected_output = ["@", nil, "some_node"]
+    assert_equal expected_output, output
   end
 
   def test_tokenize_marker
-    input = "@some_label:some_node"
+    input = "@some_label:some_node,"
     output = MemoParser::Tokenizer.tokenize_marker(input)
     expected_output = ["@", "some_label", "some_node"]
-
-    assert output == expected_output
+    assert_equal expected_output, output
   end
   
-  def test_select_markers
-    input = "some string @some_marker, @ # #:not_marker 
-             @:not_marker @label1:node1 @label1:node1 
-             @label2:node #label:node"
-    output = MemoParser::Tokenizer.select_markers(input)
-    expected_output = ["@some_marker", "@label1:node1", "@label2:node", 
-                       "#label:node"]
-
-    assert output == expected_output
-  end
 end
