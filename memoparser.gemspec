@@ -5,7 +5,7 @@ require 'version'
 require 'memoparser.rb'
 
 Gem::Specification.new do |spec|
-  spec.name          = "MemoParser"
+  spec.name          = "memoparser"
   spec.version       = MemoParser::VERSION
   spec.authors       = ["Noam Gagliardi"]
   spec.email         = [""]
