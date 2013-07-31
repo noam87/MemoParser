@@ -8,8 +8,8 @@ class TestTokenizer < Minitest::Test
     tag_input = ["#", "label", "node"]
     at_output = MemoParser::Parser.parse_marker(at_input)
     tag_output = MemoParser::Parser.parse_marker(tag_input)
-    expected_at_output = [:relationships, :label, :node]
-    expected_tag_output = [:tags, :label, :node]
+    expected_at_output = [:relationships, :label, "node"]
+    expected_tag_output = [:tags, :label, "node"]
     assert_equal expected_at_output, at_output
     assert_equal expected_tag_output, tag_output
   end
@@ -41,8 +41,8 @@ class TestTokenizer < Minitest::Test
     tag_input = ["#", "label", "node"]
     at_output = MemoParser::Parser.parse_node(at_input)
     tag_output = MemoParser::Parser.parse_node(tag_input)
-    expected_at_output = ["@", "label", :node]
-    expected_tag_output = ["#", "label", :node]
+    expected_at_output = ["@", "label", "node"]
+    expected_tag_output = ["#", "label", "node"]
     assert_equal expected_at_output, at_output
     assert_equal expected_tag_output, tag_output
   end

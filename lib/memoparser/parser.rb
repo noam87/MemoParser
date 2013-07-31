@@ -36,7 +36,7 @@ module MemoParser
     end
 
     def self.parse_node(array)
-      array[2] = array[2].to_sym
+      array[2] = array[2].to_s
       array
     end
   end
