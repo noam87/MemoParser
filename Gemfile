@@ -5,4 +5,5 @@ gemspec
 
 gem "minitest"
 gem "pry"
+gem "rake"
 
