@@ -12,8 +12,5 @@ module MemoParser
     # example, a string for a ":user" label, an integer for a ":comment" label:
     #
     #   [[:relationship, :user, "joe_schmo"], [:relationship, :comment, 2456]]
-    def self.hi
-      "hi"
-    end
   end
 end
