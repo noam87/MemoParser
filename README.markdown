@@ -8,9 +8,9 @@ Given the following input:
 
 ```ruby
 
-PLain text followed by markers: 
+"PLain text followed by markers: 
 
-"@relationA:some_content, @relationA:more_content, @relationB:last_relation
+@relationA:some_content, @relationA:more_content, @relationB:last_relation
 
 #tagA:some_tag #tagB:another_tag."
 ```
@@ -32,6 +32,19 @@ Produce the following ruby hash as an output:
     tagB: ["another_tag"]
   },
 }
+```
+
+And the following string:
+
+```ruby
+
+"PLain text followed by markers: 
+
+<a href="link_to_memo_id">@relationA:some_contenti</a>, 
+<a href="link_to_memo_id">@relationA:more_content</a>, 
+<a href="link_to_memo_id">@relationB:last_relation</a>
+
+#tagA:some_tag #tagB:another_tag."
 ```
 
 ## Terms
