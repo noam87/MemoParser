@@ -31,7 +31,15 @@ module MemoParser
     end
 
     def self.parse_label(array)
-      array[1] = array[1].to_sym
+      if array[1] == nil
+        if array[0] == "@" or array[0] == :relationships
+          array[1] = :memo
+        else
+          array[1] = :tag
+        end
+      else
+        array[1] = array[1].to_sym
+      end
       array
     end
 

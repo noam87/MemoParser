@@ -36,6 +36,17 @@ class TestTokenizer < Minitest::Test
     assert_equal expected_tag_output, tag_output
   end
 
+  def test_parse_nil_label
+    at_input = ["@", nil, "node"]
+    tag_input = ["#", nil, "node"]
+    at_output = MemoParser::Parser.parse_label(at_input)
+    tag_output = MemoParser::Parser.parse_label(tag_input)
+    expected_at_output = ["@", :memo, "node"]
+    expected_tag_output = ["#", :tag, "node"]
+    assert_equal expected_at_output, at_output
+    assert_equal expected_tag_output, tag_output
+  end
+
   def test_parse_node
     at_input = ["@", "label", "node"]
     tag_input = ["#", "label", "node"]
