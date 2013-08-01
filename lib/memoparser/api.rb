@@ -1,0 +1,2 @@
+module MemoParser
+end
