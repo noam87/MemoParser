@@ -10,6 +10,12 @@ module MemoParser
         node = marker[2]
         hash[identifier][label] << node
       end
+      # Sort for less confusion.
+      array.each do |marker|
+        identifier = marker[0]
+        label = marker[1]
+        hash[identifier][label].sort!
+      end
       hash
     end
 

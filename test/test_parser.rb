@@ -3,6 +3,22 @@ require 'minitest/autorun'
 require_relative "helper"
 
 class TestTokenizer < Minitest::Test
+  def test_parse_string
+    input = "only these are markers: @label:node #label:node"
+    output = MemoParser::Parser.parse_string(input)
+    expected_output = [[:relationships, :label, "node"], 
+                      [:tags, :label, "node"]]
+    assert_equal expected_output, output
+  end
+
+  def test_parse_markers_array
+    input = [["@", "label", "node"], ["#", "label", "node"]]
+    output = MemoParser::Parser.parse_markers_array(input)
+    expected_output = [[:relationships, :label, "node"], 
+                      [:tags, :label, "node"]]
+    assert_equal expected_output, output
+  end
+
   def test_parse_marker
     at_input = ["@", "label", "node"]
     tag_input = ["#", "label", "node"]

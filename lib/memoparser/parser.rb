@@ -12,6 +12,17 @@ module MemoParser
     # example, a string for a ":user" label, an integer for a ":comment" label:
     #
     #   [[:relationship, :user, "joe_schmo"], [:relationship, :comment, 2456]]
+    def self.parse_string(string)
+      output = []
+      markers_array = MemoParser::Tokenizer.tokenize(string)
+      output = parse_markers_array(markers_array)
+    end
+    
+    def self.parse_markers_array(array)
+      output = []
+      array.each { |marker|  output << parse_marker(marker)}
+      output
+    end
     
     def self.parse_marker(array)
       output = parse_node(array)
