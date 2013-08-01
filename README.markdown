@@ -36,8 +36,6 @@ Produces the following ruby hash as an output:
 }
 ```
 
-#tagA:some_tag #tagB:another_tag."
-```
 
 ## Definition of a marker:
 
@@ -82,3 +80,6 @@ Given that same original string, produce the following string as an output:
 <a href="link_to_memo_id">@relationA:some_contenti</a>, 
 <a href="link_to_memo_id">@relationA:more_content</a>, 
 <a href="link_to_memo_id">@relationB:last_relation</a>
+
+#tagA:some_tag #tagB:another_tag."
+```
